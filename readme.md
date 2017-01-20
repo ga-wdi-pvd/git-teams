@@ -46,7 +46,7 @@ interfering. When a feature is complete, it can be merged back into master.
 ### 3 most important things when using git with teams:
 
  1.  quality commit messages
-  - ![Git Commits](xkcd_1296.png)
+  - ![Git Commits](http://imgs.xkcd.com/comics/git_commit.png)
  2.  make branches for your work (or experiments)
   - one feature or bug fix chunk of work per branch…don’t do, for example: write the whole project on one branch called `project ` then merge back into master.
   - allows multiple people to safely all contribute to one code base
