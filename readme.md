@@ -17,6 +17,8 @@ Git, apart from being free and open source, is also in many ways a superior syst
 
 ### Review Git Branching
 
+![Git](./xkcd_1597.png)
+
 A branch in git is just a label on a particular commit in a repository, along with all of its history (parent commits). When we commit, the current branch label moves forward to the new commit. Another way to say that is the branch label always stays at the tip of the branch.
 
 > `HEAD` indicates the point on the repository that we're reading from. When we run `git branch`, new branches get added at wherever `HEAD` points. If 'HEAD' is pointing at the end of a branch, it also means that new commits will be added to that branch.
@@ -37,6 +39,41 @@ into master.
 2. To allow work to proceed on multiple features (or by multiple people) without
 interfering. When a feature is complete, it can be merged back into master.
 3. To allow easy bug fixes on a stable version while features are being developed.
+
+
+## Git With Team Notes
+
+### 3 most important things when using git with teams:
+
+ 1.  quality commit messages
+  - ![Git Commits](xkcd_1296.png)
+ 2.  make branches for your work (or experiments)
+  - one feature or bug fix chunk of work per branch…don’t do, for example: write the whole project on one branch called `project ` then merge back into master.
+  - allows multiple people to safely all contribute to one code base
+ 3. keep a pristine master (or deploy) branch
+  - only allow high quality bug free code in deploy
+  - squash commits (via interactive rebase) to combine similar commits
+    - ex: if you have 3 commits where you are trying to get firebase installed, that’s fine, but before you stop working for the day or before you submit a pull request, use `git rebase -i firstCommit` t start the rebase process. Here, you can reword commit messages, combine commits into one, delete commits altogether (you will lose that code if you delete the line!)
+    - rebase with caution
+    - if you are experimenting make a backup of your branch or entire project…copies are cheap. recovering lost code is expensive.
+  - write testing or staging code in a staging branch (where WIP things can get merged and tested)
+
+### DOs
+
+ - Do use some sort of version control. Don't stand for someone telling you they will just email you the changes (unless it's in a git patch).
+
+ - Do take advantage of github: view and merge pull requests via the GUI, create issues (bug reports), do peer reviews and comment on code to give each other feedback
+
+ - Undestand if you need a public or private repo. Github is a service that hosts public git repos for free. You can host your own git repo if you want. You can use bitbucket for free private repos.
+
+### DO NOTs
+
+ - Do Not Publish senseitive information. Github loves open source! Make sure you understand when pushing to your public repo, it’s available to the masses. Keep passwords, keys, sensitive info OUT of your repo with a .gitignore file
+
+  - Do Not gloss over merge conflicts and expect the other person to fix it up. You have the conflict, it is your responsibility to fix it up and keep the centralized repo or master branch in pristine condition. If you cannot figure out which code you should keep, bring in your team or partner to resolve discrepancies between what should stay and what should go, when dealing with conflicting code.
+
+ - Do Not force push code to a shared environment, or rebase code after sharing. The golden rule for git rebase is "Only rebase before sharing your code, never after." The same goes with forcing code with -f. Don’t do this on the shared repo, as future collaborators will be in a very bad place when trying to work with the shared code. The only exception is that everyone is 100% OK with this and understand the risks of borked code in the shared repo.
+
 
 ## You Do: Emergency Compliment Angular - Setup (5 min)
 
